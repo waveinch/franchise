@@ -31,7 +31,7 @@
     "d3-shape": "^1.2.0",
     "electron-notarize": "^0.1.1",
     "font-awesome": "^4.7.0",
-    "franchise-client": "^0.2.7",
+    "franchise-client": "0.2.7",
     "graphql": "^14.3.1",
     "graphql-request": "^1.4.0",
     "leaflet": "^1.4.0",
@@ -89,8 +89,14 @@
     }
   },
   "lint-staged": {
-    "*.{tsx,ts,js,jsx,json,css,less}": ["prettier --write", "git add"],
-    ".{prettierrc,babelrc}": ["prettier --write", "git add"]
+    "*.{tsx,ts,js,jsx,json,css,less}": [
+      "prettier --write",
+      "git add"
+    ],
+    ".{prettierrc,babelrc}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "author": "Eponymous Labs, Inc.",
   "repository": "git@github.com:HVF/franchise.git",

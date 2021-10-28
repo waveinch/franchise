@@ -89,8 +89,14 @@
     }
   },
   "lint-staged": {
-    "*.{tsx,ts,js,jsx,json,css,less}": ["prettier --write", "git add"],
-    ".{prettierrc,babelrc}": ["prettier --write", "git add"]
+    "*.{tsx,ts,js,jsx,json,css,less}": [
+      "prettier --write",
+      "git add"
+    ],
+    ".{prettierrc,babelrc}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "author": "Eponymous Labs, Inc.",
   "repository": "git@github.com:HVF/franchise.git",

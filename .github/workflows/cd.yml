@@ -16,7 +16,7 @@ jobs:
       - uses: docker/metadata-action@v3
         id: meta
         with:
-          images: name/app
+          images: binakot/franchise
       - uses: docker/build-push-action@v2
         with:
           context: .

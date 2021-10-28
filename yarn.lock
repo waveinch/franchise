@@ -4351,7 +4351,7 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
-franchise-client@^0.2.7:
+franchise-client@0.2.7:
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/franchise-client/-/franchise-client-0.2.7.tgz#322f9ac8e3f61c26b779807f879f52d026841143"
   integrity sha512-s4iZbHc3CvIGbRKftkx3WSzzqzwfViS2xbBxKqWqyR2mzof2gr2SJFfInHw9xH9KNYAghIpeM3vtgfwRBu4sAQ==

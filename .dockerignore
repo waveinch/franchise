@@ -1,0 +1,4 @@
+.idea/
+/dist
+/bundle
+node_modules/

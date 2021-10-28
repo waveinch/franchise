@@ -3,12 +3,12 @@ FROM nginx:alpine
 RUN apk add --no-cache \
 	git \
 	nodejs \
-	nodejs-npm \
+	npm \
 	yarn
 
 ADD ./ /franchise
 WORKDIR /franchise
-RUN npm i -g npx franchise-client && \
+RUN npm i -g npx franchise-client@0.2.7 && \
 	yarn install && yarn build
 
 RUN cp -r /franchise/bundle/* /usr/share/nginx/html && \

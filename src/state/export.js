@@ -18,20 +18,6 @@ export default function ExportButton() {
                 >
                     <i className="fa fa-download" aria-hidden="true" /> Download
                 </button>
-                <Popover
-                    position={Position.BOTTOM}
-                    content={
-                        <Menu>
-                            <MenuItem
-                                iconName="unlock"
-                                text="Download with Credentials"
-                                onClick={(e) => downloadNotebook(true)}
-                            />
-                        </Menu>
-                    }
-                >
-                    <button type="button" className="pt-button pt-icon-caret-down" />
-                </Popover>
             </div>
         </span>
     )
@@ -118,8 +104,8 @@ async function updateAutosave() {
     localStorage.activeConnector = State.get('connect', 'active')
 }
 
-async function makeURL(withCredentials, title) {
-    let data = await dumpApplicationState(withCredentials, true)
+async function makeURL(title) {
+    let data = await dumpApplicationState(false, true)
 
     var bin_data = JSON.stringify(JSON.stringify(data))
     var basename = location.protocol + '//' + location.host + location.pathname
@@ -128,6 +114,7 @@ async function makeURL(withCredentials, title) {
             require('raw-loader!./export_template.html')
                 .replace('{{notebook_name}}', title)
                 .replace('{{bin_data}}', bin_data)
+                .replace('{{base_url}}', basename)
                 .replace(
                     '{{notebook_contents}}',
                     State.getAll('notebook', 'layout', U.each, 'items', U.each, 'query')
@@ -138,10 +125,9 @@ async function makeURL(withCredentials, title) {
     )
 }
 
-async function downloadNotebook(withCredentials) {
+async function downloadNotebook() {
     let extension = 'html'
-    let default_name =
-        new Date().toISOString().slice(0, 10) + (withCredentials ? '-Credentialed' : '')
+    let default_name = new Date().toISOString().slice(0, 10)
 
     const a = document.createElement('a')
     a.style.position = 'absolute'
@@ -153,13 +139,13 @@ async function downloadNotebook(withCredentials) {
     const prompt = await swal.fire({
         input: 'text',
         showCancelButton: true,
-        title: 'Export Notebook' + (withCredentials ? ' (with credentials)' : ''),
+        title: 'Export Notebook',
         inputPlaceholder: default_name,
     })
     if (!prompt.dismiss) {
         let title = prompt.value || default_name
         a.setAttribute('download', title.match(/.+\..+/) ? title : title + '.' + extension)
-        a.setAttribute('href', await makeURL(withCredentials, title))
+        a.setAttribute('href', await makeURL(title))
         a.click()
 
         requestAnimationFrame((e) => a.remove())

@@ -19,19 +19,7 @@ import * as MongoConnector from './mongo'
 import * as CartoConnector from './carto'
 import * as GraphQLConnector from './graphql'
 
-const Databases = [
-    SQLiteConnector,
-    PostgresConnector,
-    MySQLConnector,
-    MongoConnector,
-    BigQueryConnector,
-    GraphQLConnector,
-    CartoConnector,
-    'Microsoft SQL Server',
-    'Oracle',
-    'IBM DB2',
-    'Teradata',
-]
+const Databases = [PostgresConnector]
 
 export default class Configure extends React.PureComponent {
     render() {

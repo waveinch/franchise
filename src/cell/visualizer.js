@@ -44,10 +44,15 @@ class DownloadVisualizer extends React.Component {
                     inputPlaceholder: 'my_cool_file',
                 })) || 'my_cool_file'
 
-            a.download = title.match(/.+\..+/) ? title : title + '.' + extension
+            console.log(title)
+            a.download =
+                title.value && title.value.match(/.+\..+/)
+                    ? title.value
+                    : title.value + '.' + extension
             a.href = URL.createObjectURL(new Blob([data], { type }))
             a.click()
         } catch (e) {
+            console.log(e)
             console.log('cancelled download')
         }
     }

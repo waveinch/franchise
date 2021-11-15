@@ -1,8 +1,5 @@
 #!/bin/sh
 
-set -e
+node franchise-client/src/server.js &
+node serve.js
 
-npx franchise-client & \
-nginx -g 'daemon off;'
-
-exec "$@"

@@ -1,18 +1,12 @@
-FROM nginx:alpine
+FROM node:14-slim
 
-RUN apk add --no-cache \
-	git \
-	nodejs \
-	npm \
-	yarn
+ADD ./bundle /bundle
+ADD ./serve.js /serve.js
+ADD ./franchise-client /franchise-client
+WORKDIR /franchise-client
+RUN yarn install
+WORKDIR /
 
-ADD ./ /franchise
-WORKDIR /franchise
-RUN npm i -g npx franchise-client@0.2.7 && \
-	yarn install && yarn build
-
-RUN cp -r /franchise/bundle/* /usr/share/nginx/html && \
-	rm -rf /franchise
 
 EXPOSE 80 14645
 COPY ./docker-entrypoint.sh /
